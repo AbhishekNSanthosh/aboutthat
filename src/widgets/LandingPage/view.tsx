@@ -528,7 +528,7 @@ export default function Home() {
                 <Link href={"/payment"}>
                   <div className="border border-[#cb0531] p-3 rounded-md">
                     <span className="text-[#cb0531] font-bold">
-                      Head to : https://localhost:3000/payment
+                      Head to : https://aboutthatt.vercel.app/payment
                     </span>
                   </div>
                 </Link>
