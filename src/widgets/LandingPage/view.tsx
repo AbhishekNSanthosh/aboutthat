@@ -21,6 +21,7 @@ export default function Home() {
   const [status, setStatus] = useState<number[]>([]);
   const [showPayment, setShowPayment] = useState(false);
   const [call, setCall] = useState(false);
+  const [errorModal, setErrorModal] = useState(false);
 
   useEffect(() => {
     // Ensure localStorage is accessed only in the browser
@@ -46,6 +47,8 @@ export default function Home() {
           localStorage.setItem("status", JSON.stringify(updatedStatus)); // Persist to localStorage
         }
       }
+    } else {
+      setErrorModal(true);
     }
     setCall(true);
   };
@@ -58,6 +61,8 @@ export default function Home() {
         const updatedStatus = [...status, 2];
         localStorage.setItem("status", JSON.stringify(updatedStatus));
       }
+    } else {
+      setErrorModal(true);
     }
     setCall(true);
   };
@@ -72,6 +77,8 @@ export default function Home() {
         const updatedStatus = [...status, 3];
         localStorage.setItem("status", JSON.stringify(updatedStatus));
       }
+    } else {
+      setErrorModal(true);
     }
     setCall(true);
   };
@@ -87,6 +94,8 @@ export default function Home() {
         const updatedStatus = [...status, 4];
         localStorage.setItem("status", JSON.stringify(updatedStatus));
       }
+    } else {
+      setErrorModal(true);
     }
     setCall(true);
   };
@@ -533,6 +542,31 @@ export default function Home() {
                   </div>
                 </Link>
               )}
+            </div>
+          </div>
+        )}
+
+        {errorModal && (
+          <div className="fixed inset-0 z-50 flex items-center  mt-[-10px] justify-center backdrop-blur-md bg-black bg-opacity-50">
+            <div className="bg-white p-8 rounded-lg shadow-lg lg:w-[40vw] w-[90vw] flex flex-col items-center justify-center space-y-10">
+              <div className="w-full items-center justify-center flex">
+                <Image
+                  className="w-[15rem] mt-[-13px] mr-2"
+                  src={"/about.svg"}
+                  alt="0"
+                  width={100}
+                  height={100}
+                />{" "}
+              </div>
+              <p className="text-gray-600 text-xl mb-6">Please try again !!!</p>
+              <button
+                className="px-4 py-2 bg-[#cb0531] text-white rounded-md hover:bg-blue-700 transition-all w-full"
+                onClick={() => {
+                  setErrorModal(false);
+                }}
+              >
+                Okay
+              </button>
             </div>
           </div>
         )}
